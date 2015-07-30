@@ -1,0 +1,20 @@
+<h3>Subscription Info</h3>
+<a href="#/subscription-info/add" class="btn btn-default btn-sm add-new-btn">
+    <span class="glyphicon glyphicon-plus-sign"></span> Add New Client Subscription
+</a>
+<table class="table" hide-when-loading>
+    <thead>
+    <tr>
+        <th>Platform</th>
+        <th colspan="2">Client</th>
+    </tr>
+    </thead>
+    <tr ng-show="subscriptionList.length == 0">
+        <td colspan="2">No subscriptions have been added, yet. Why don't you do something about that?</td>
+    </tr>
+    <tr ng-repeat="subscription in subscriptionList">
+        <td>{{ subscription.platform_code }}</td>
+        <td>{{ appNames[ subscription.client_code ] }}</td>
+        <td><a ng-href="#/subscription-info/{{ subscription.id }}">edit</a></td>
+    </tr>
+</table>

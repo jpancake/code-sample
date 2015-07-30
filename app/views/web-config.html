@@ -1,0 +1,42 @@
+<form action="" name="form" class="crud">
+    <div class="panel panel-default" hide-when-loading>
+        <div class="panel-heading"><h3>Popular Songs</h3></div>
+        <div class="panel-body">
+            <div style="" class="form-horizontal song-group">
+                <div class="form-group song-group" ng-repeat="song in data.songList">
+                    <input class="form-control" type="text" value="{{ returnTitle(song) }}" disabled="disabled">
+                    <span class="inline-link" ng-click="removeSong(song, form)">remove song</span>
+                </div>
+
+                <div class="form-group song-group">
+                    <input class="form-control" placeholder="Enter a song name" type="text" ng-model="songModel" typeahead-on-select="addSong()" typeahead="song.title for song in songList.arr | filter:$viewValue | limitTo:14">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel panel-default" hide-when-loading>
+        <div class="panel-heading"><h3>Ad</h3></div>
+        <div class="form-horizontal panel-body" style="padding-bottom: 0;">
+            <div class="form-group" style="padding-top: 15px;">
+                <label class="control-label col-sm-2" for="">Alt Description</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="data.ad_alt_description" value="{{ data.ad_alt_description }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Image URL</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control"  ng-model="data.ad_image_url" value="{{ data.ad_image_url }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Redirect URL</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="data.ad_redirect_url" value="{{ data.ad_redirect_url }}" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg" ng-click="save( form.$invalid, form.$pristine )">Save</button>
+</form>

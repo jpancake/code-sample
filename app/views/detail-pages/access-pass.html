@@ -1,0 +1,99 @@
+<form action="" name="form" class="crud" ng-submit="save( form.$invalid, form.$pristine )">
+    <h2>Access Pass</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Description</h3>
+
+            <div class="btn-group">
+                <button class="dropdown-toggle float-link" data-toggle="dropdown">add localised description</button>
+                <ul class="dropdown-menu" role="menu">
+                    <drop-down ref="languages" usedBy="data.description" data-field-type="str"></drop-down>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body form-horizontal">
+            <div class="form-group" ng-repeat="(key,value) in data.description">
+                <label class="control-label col-sm-2" for="">{{ languages[key] }}</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" value="{{ value }}" ng-model="data.description[key]" ng-required="key == 'en'" style="width: 60%">
+                    <span class="inline-link" ng-hide="key == 'en'" ng-click="removeField(key, 'description', form)">remove description</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Name</h3>
+
+            <div class="btn-group">
+                <button class="dropdown-toggle float-link" data-toggle="dropdown">add localised name</button>
+                <ul class="dropdown-menu" role="menu">
+                    <drop-down ref="languages" usedBy="data.name" data-field-type="str"></drop-down>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body form-horizontal">
+            <div class="form-group" ng-repeat="(key,value) in data.name">
+                <label class="control-label col-sm-2" for="">{{ languages[key] }}</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" value="{{ value }}" ng-model="data.name[key]" ng-required="key == 'en'" style="width: 60%">
+                    <span class="inline-link" ng-hide="key == 'en'" ng-click="removeField(key, 'name', form)">remove name</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Etcetera</h3>
+        </div>
+        <div class="form-horizontal panel-body" style="padding-bottom: 0;">
+            <div class="form-group" style="padding-top: 15px;">
+                <label class="control-label col-sm-2" for="">SKU</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="A sexy SKU" ng-model="data.sku" ng-trim="true" value="{{ data.sku }}" ng-disabled="mode == 'update'" required>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="bordered form-horizonal col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label col-sm-6" for="">Platform Code</label>
+                        <div class="col-sm-4">
+                            <select name="" ng-model="data.platform_code" required>
+                                <option ng-repeat="platform in platforms" value="{{ platform }}" ng-selected="{{ platform == data.platform_code }}">{{ platform }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="bordered form-horizonal col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label col-sm-5" for="">Client Code</label>
+                        <div class="col-sm-4">
+                            <select name="" ng-model="data.client_code">
+                                <option ng-repeat="(key,val) in appNames" value="{{ key }}" ng-selected="{{ key == data.client_code }}">{{ val }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="bordered form-horizontal col-sm-4">
+                    <div class="form-group">
+                        <label for="" class="control-label col-sm-4">Enabled</label>
+                        <div class="col-sm-5">
+                            <input ng-checked="key == 'enabled'" type="checkbox" ng-model="data.enabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="bordered form-horizontal col-sm-4">
+                    <div class="form-group">
+                        <label for="" class="control-label col-sm-7">Duration (in days)</label>
+                        <div class="col-sm-3">
+                            <input class="col-sm-3" type="number" ng-model="data.days_duration" min="1" value="{{ data.days_duration }}" required style="min-width: 40px; padding: 0;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg">{{ mode }}</button>
+</form>

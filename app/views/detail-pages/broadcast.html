@@ -1,0 +1,83 @@
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <span class="modal-title" id="myModalLabel">You are about to push to <strong>{{ broadcast_clients }}</strong> on <strong>{{ broadcast_platforms }}</strong>:</span>
+            </div>
+            <div class="modal-body">
+                <h4>{{ data.notification_message }}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Do it!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" name="form" class="crud" hide-when-loading>
+    <h2>Broadcast Notification</h2>
+    <div class="panel panel-default">
+        <div class="form-horizontal panel-body" style="padding-bottom: 0;">
+            <div class="form-group" style="padding-top: 15px;">
+                <label class="control-label col-sm-2" for="">Message</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Check out my style" value="{{ data.notification_message }}" ng-model="data.notification_message" ng-trim="true" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Platform</label>
+                <div class="col-sm-4">
+                    <select name="" ng-model="data.platform" required>
+                        <option ng-repeat="(key,val) in platforms" value="{{ key }}" ng-selected="{{ key == data.platform }}">{{ val }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Client</label>
+                <div class="col-sm-4">
+                    <select name="" ng-model="data.client_code">
+                        <option ng-repeat="(key,val) in clients" value="{{ key }}" ng-selected="{{ key == data.client_code }}">{{ val }}</option>
+                    </select>
+                </div>
+            </div>
+       </div>
+    </div>
+    <div class="panel panel-default bordered">
+        <div class="panel-heading">
+            <h3>Optional</h3>
+        </div>
+        <div class="form-horizontal panel-body">
+            <div class="form-group" style="padding-top: 15px;">
+                <label class="control-label col-sm-2" for="">Internal URI</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="starmaker://bort" value="{{ data.notification_internal_uri }}" ng-model="data.notification_internal_uri" ng-trim="true">
+                </div>
+            </div>
+            <div ng-show="data.platform == 'ios' || data.platform == 'all'">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="">Notification Badge</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" min="0" type="number" ng-model="data.notification_badge" value="{{ data.notification_badge }}" ng-trim="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="">Notification Sound</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" placeholder="default" ng-model="data.notification_sound" value="{{ data.notification_sound }}" ng-trim="true">
+                    </div>
+                </div>
+            </div>
+            <div ng-show="data.platform == 'android' || data.platform == 'all'">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="">Notification Icon URL</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" ng-model="data.notification_icon_url" value="{{ data.notification_icon_url }}" ng-trim="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-lg" data-toggle="modal" data-target="#confirmModal" ng-disabled="form.$invalid">Push It!</button>
+</form>

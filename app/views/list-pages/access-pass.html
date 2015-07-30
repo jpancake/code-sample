@@ -1,0 +1,21 @@
+<h3>Access Passes</h3>
+<a href="#/access-pass/add" class="btn btn-default btn-sm add-new-btn">
+    <span class="glyphicon glyphicon-plus-sign"></span> Add New Access Pass
+</a>
+<table class="table" hide-when-loading>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>SKU</th>
+        <th colspan="2"></th>
+    </tr>
+    </thead>
+    <tr ng-show="accessPassList.length == 0">
+        <td colspan="2">No access passes have been added, yet. Now would be a fine time to add one.</td>
+    </tr>
+    <tr ng-repeat="accessPass in accessPassList">
+        <td>{{ accessPass.name.en }}</td>
+        <td>{{ accessPass.sku }}</td>
+        <td><a ng-href="#/access-pass/{{ accessPass.id }}">edit</a></td>
+    </tr>
+</table>

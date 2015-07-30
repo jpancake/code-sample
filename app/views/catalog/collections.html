@@ -1,0 +1,21 @@
+<h3>Collections</h3>
+<a href="#/catalog/collections/add" class="btn btn-default btn-sm add-new-btn">
+    <span class="glyphicon glyphicon-plus-sign"></span> Add New Collection
+</a>
+
+<table class="table" hide-when-loading>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th colspan="2">ID</th>
+        </tr>
+    </thead>
+    <tr ng-show="collectionList.length == 0">
+        <td colspan="2">No collections have been added, yet. Why don't you do something about that?</td>
+    </tr>
+    <tr ng-repeat="collection in collectionList">
+        <td>{{ collection.title }}</td>
+        <td>{{ collection.id }}</td>
+        <td><a ng-href="#/catalog/collection/{{ collection.id }}">edit</a></td>
+    </tr>
+</table>

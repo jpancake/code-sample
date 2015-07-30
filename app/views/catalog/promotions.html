@@ -1,0 +1,22 @@
+<h3>Promotions</h3>
+<a href="#/catalog/promotions/add" class="btn btn-default btn-sm add-new-btn">
+    <span class="glyphicon glyphicon-plus-sign"></span> Add New Promotion
+</a>
+<table class="table" hide-when-loading>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Link</th>
+            <th colspan="2">ID</th>
+        </tr>
+    </thead>
+    <tr ng-show="promotionList.length == 0">
+        <td colspan="2">No promotions have been added, yet. Why don't you do something about that?</td>
+    </tr>
+    <tr ng-repeat="promotion in promotionList">
+        <td>{{ promotion.title }}</td>
+        <td>{{ promotion.link }}</td>
+        <td>{{ promotion.id }}</td>
+        <td><a ng-href="#/catalog/promotion/{{ promotion.id }}">edit</a></td>
+    </tr>
+</table>

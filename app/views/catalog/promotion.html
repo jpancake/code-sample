@@ -1,0 +1,66 @@
+<form action="" name="form" class="crud">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Promotion Options</h3></div>
+        <div class="form-horizontal panel-body" style="padding-bottom: 0;">
+            <div class="form-group" style="padding-top: 15px;">
+                <label class="control-label col-sm-2" for="">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="A meaningful title" ng-model="data.title" value="{{ data.title }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Link</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="starmaker://iaps" ng-model="data.link" value="{{ data.link }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Version</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="1" ng-model="data.version" value="{{ data.version }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Available Languages</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <label class="checkbox-inline" ng-repeat="(country,lang) in languages">
+                            <input type="checkbox" ng-model="data.available_languages[ country ]"> {{ lang }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+        <div ng-repeat="(app,val) in appNames" class="panel-body">
+            <h4 style="border-bottom: solid 1px #eee;">{{ val }}</h4>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="">Available Regions</label>
+                    <div class="col-sm-5">
+                        <div class="input-group">
+                            <label class="checkbox-inline" ng-repeat="(key,region) in regions">
+                                <input type="checkbox" ng-model="data[ app ].available_regions[ key ]"> {{ region }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="(os,opts) in data[app].options" class="bordered form-horizontal col-sm-5">
+                <h4>{{ os }}</h4>
+                <div ng-repeat="(key,val) in opts" style="" class="form-group">
+                    <label for="" class="control-label col-sm-4">{{ key }}</label>
+                    <div class="col-sm-5">
+                        <input ng-if="key == 'index'" type="number" class="form-control" max="20" min="1" ng-model="data[app]['options'][os][key]" value="{{ val }}">
+                        <input ng-if="key == 'enabled' || key == 'bigEnabled'" type="checkbox" ng-model="data[app]['options'][os][key]">
+                        <input ng-if="key !== 'index' && key !== 'enabled' && key !== 'bigEnabled'" placeholder="1.0.0" pattern="[0-9]+\.[0-9]+\.[0-9]+" title="Must be in the format of n.n.n where n is a number." type="text" ng-required="key.indexOf('min') > -1" class="form-control" value="{{ val }}" ng-model="data[app]['options'][os][key]" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-lg" ng-click="save( form.$invalid, form.$pristine )">{{ mode }}</button>
+
+</form>

@@ -1,0 +1,20 @@
+<h3>Filters</h3>
+<a href="#/catalog/filters/add" class="btn btn-default btn-sm add-new-btn">
+    <span class="glyphicon glyphicon-plus-sign"></span> Add New Filter
+</a>
+<table class="table" hide-when-loading>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th colspan="2">ID</th>
+    </tr>
+    </thead>
+    <tr ng-show="filterList.length == 0">
+        <td colspan="2">No filters have been added, yet. Why don't you do something about that?</td>
+    </tr>
+    <tr ng-repeat="filter in filterList">
+        <td>{{ filter.labels.title.en }}</td>
+        <td>{{ filter.id }}</td>
+        <td><a ng-href="#/catalog/filter/{{ filter.id }}">edit</a></td>
+    </tr>
+</table>

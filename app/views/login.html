@@ -1,0 +1,18 @@
+<form action="" id="loginForm">
+    <h2>Sign in</h2>
+    <div class="alert alert-danger alert-dismissable" ng-show="error">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span ng-show="error.badLogin">
+            <strong>Invalid Credentials</strong> Please try again.
+        </span>
+        <span ng-show="error.requiresLogin">
+            The page you were trying to access requires that you be logged in.
+        </span>
+        <span ng-show="error.sessionTimeout">
+            <strong>Session Timeout</strong> You have been logged out due to inactivity. Please login again below.
+        </span>
+    </div>
+    <input type="email" class="form-control" placeholder="Email address" ng-model="params.username" required sm-focus>
+    <input type="password" class="form-control" placeholder="Password" ng-model="params.password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login(params)" ng-disabled="!params.username || !params.password" >Sign in</button>
+</form>

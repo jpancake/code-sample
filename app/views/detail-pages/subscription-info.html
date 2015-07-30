@@ -1,0 +1,77 @@
+<form action="" name="form" class="crud" ng-submit="save( $event, form.$invalid, form.$pristine )">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Subscription Info</h3></div>
+        <div class="form-horizontal panel-body" style="padding-bottom: 0;">
+            <div class="form-group" style="padding-top: 15px;">
+                <label class="control-label col-sm-2" for="">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="A meaningful title" ng-model="data.title" ng-trim="true" value="{{ data.title }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Subtitle</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="An enticing subtitle" ng-model="data.subtitle" ng-trim="true" value="{{ data.subtitle }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Platform Code</label>
+                <div class="col-sm-4">
+                    <select name="" ng-model="data.platform_code" required>
+                        <option ng-repeat="platform in platforms" value="{{ platform }}" ng-selected="{{ platform == data.platform_code }}">{{ platform }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Client Code</label>
+                <div class="col-sm-4">
+                    <select name="" ng-model="data.client_code">
+                        <option ng-repeat="(key,val) in appNames" value="{{ key }}" ng-selected="{{ key == data.client_code }}">{{ val }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Button Label</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Optional button label" ng-model="data.button_label" value="{{ data.button_label }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Bullet Points</label>
+                <div class="col-sm-4">
+                    <div class="subscription-repeater" ng-repeat="bullet in data.bullets track by $index">
+                        <span class="glyphicon glyphicon-remove subscription-remove" ng-click="removeFrom('bullets', $index, form)" ng-show="data.bullets.length != 1"></span>
+                        <input type="text" ng-keydown="inputHandler($event, 'bullets')" class="form-control" placeholder="Optional Bullet {{ $index + 1 }}" ng-model="data.bullets[$index]" ng-trim="true" value="{{ bullet }}">
+                    </div>
+
+                    <span class="subscription-add" ng-click="addTo('bullets')" ng-hide="data.bullets.length == 3">Add Another Bullet</span>
+                </div>
+            </div>
+            <h3>Banners</h3>
+            <span ng-hide="data.banners.length > 0" ng-click="addTo('banners')" class="btn btn-default btn-sm add-new-btn" style="position: relative; top: -4px; left: 50px;">
+                <span class="glyphicon glyphicon-plus-sign"></span> Add a Banner</span>
+
+            <div ng-repeat="banner in data.banners" class="col-sm-6 col-sm-offset-1 sub-banners">
+                <div class="well">
+                    <span class="glyphicon glyphicon-remove subscription-remove" ng-click="removeFrom('banners', $index, form)"></span>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="banner.title" ng-trim="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">SKU</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" ng-model="banner.sku" ng-trim="true">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7" ng-show="data.banners.length < 3 && data.banners.length > 0">
+                <span class="subscription-add" ng-click="addTo('banners')">Add Another Banner</span>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg">{{ mode }}</button>
+</form>
