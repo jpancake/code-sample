@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body ng-app="angularAdminApp">
+<div class="container" ng-controller="MainCtrl">
+    <ng-include src="'views/navbar.html'"></ng-include>
+    <div class="col-md-12" style="padding-top: 15px" ng-view=""></div>
+    <div class="col-md-6" id="status-listener" status-listener=""></div>
+</div>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<!-- build:js scripts/app.js -->
+<script type="text/javascript" src="scripts/app.js"></script>
+
+<script type="text/javascript" src="scripts/services/access-pass-svc.js"></script>
+<script type="text/javascript" src="scripts/services/auth-svc.js"></script>
+<script type="text/javascript" src="scripts/services/collection-svc.js"></script>
+<script type="text/javascript" src="scripts/services/filter-svc.js"></script>
+<script type="text/javascript" src="scripts/services/interceptor-svc.js"></script>
+<script type="text/javascript" src="scripts/services/promotion-svc.js"></script>
+<script type="text/javascript" src="scripts/services/song-svc.js"></script>
+<script type="text/javascript" src="scripts/services/subscription-svc.js"></script>
+<script type="text/javascript" src="scripts/services/web-config-svc.js"></script>
+
+<script type="text/javascript" src="scripts/controllers/broadcast-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/collection-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/collections-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/filter-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/filters-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/login-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/main-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/promotion-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/promotions-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/subscription-info-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/subscription-list-ctrl.js"></script>
+<script type="text/javascript" src="scripts/controllers/web-config-ctrl.js"></script>
+
+<script type="text/javascript" src="scripts/directives/main.js"></script>
+<script type="text/javascript" src="scripts/directives/filter.js"></script>
+<!-- endbuild -->
+
+
+</body>
+</html>

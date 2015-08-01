@@ -15,18 +15,12 @@ sm.apiRoutes = {
 	subscriptions: sm.apiPathPrefix + 'subscription_info',
     contests: sm.apiPathPrefix + 'contests',
     contestImages: sm.apiPathPrefix + 'contest_images',
-    webConfig: sm.apiPathPrefix + 'web_config',
-    mcnUserStatus: sm.apiPathPrefix + 'mcn_user_status',
-    mcnUserContractStatus: sm.apiPathPrefix + 'mcn_user_contract_status',
-    mcnUserInfo: sm.apiPathPrefix + 'mcn_user_info',
-    inviteMCNUser: sm.apiPathPrefix + 'invite_mcn_user',
-    inviteNewMCNUser: sm.apiPathPrefix + 'add_invited_mcn_user',
-    inviteRejectedMCNUser: sm.apiPathPrefix + 'invite_rejected_mcn_user',
+    webConfig: sm.apiPathPrefix + 'web_config'
 };
 
 
 angular.module('angularAdminApp', [
-  'ngAnimate', 'ngResource', 'ngRoute', 'ui.bootstrap', 'smServices'
+  'ngAnimate', 'ngResource', 'ngRoute', 'smServices'
 ])
 	.config([ '$routeProvider', function ( $routeProvider ) {
 		$routeProvider
@@ -141,42 +135,6 @@ angular.module('angularAdminApp', [
         .when('/trending/:contestSlug', {
                 templateUrl: 'views/detail-pages/trending.html',
                 controller: 'TrendingCtrl'
-            })
-        // MCN accept/deny admin views
-        .when('/mcn-user-status', {
-                templateUrl: 'views/list-pages/mcn-user-status.html',
-                controller: 'MCNUserStatusListCtrl'
-            })
-        .when('/mcn-user-status/:mcnUserID', {
-                templateUrl: 'views/detail-pages/mcn-user-status.html',
-                controller: 'MCNUserStatusCtrl'
-            })
-        // MCN user info admin views
-        .when('/mcn-user-info', {
-                templateUrl: 'views/detail-pages/mcn-user-info.html',
-                controller: 'MCNUserInfoCtrl'
-            })
-        // MCN user create + invite admin views
-        .when('/mcn-user-contract-status', {
-                templateUrl: 'views/list-pages/mcn-user-contract-status.html',
-                controller: 'MCNUserContractCtrl'
-            })
-        .when('/invite-mcn-user', {
-                templateUrl: 'views/detail-pages/invite-mcn-user.html',
-                controller: 'InviteMCNUserCtrl'
-            })
-        .when('/invite-new-mcn-user', {
-                templateUrl: 'views/detail-pages/invite-new-mcn-user.html',
-                controller: 'InviteNewMCNUserCtrl'
-            })
-        // other views
-        .when('/mcn-rejected-user', {
-                templateUrl: 'views/list-pages/mcn-rejected-user.html',
-                controller: 'MCNRejectedUserListCtrl'
-            })
-        .when('/mcn-rejected-user/:mcnUserID', {
-                templateUrl: 'views/detail-pages/mcn-rejected-user.html',
-                controller: 'MCNRejectedUserCtrl'
             })
 		.otherwise({
 			redirectTo: '/'
