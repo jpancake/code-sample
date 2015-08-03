@@ -5,11 +5,17 @@ Because the API with which it operates is not publicly available, I wrote a very
 ### To install
 Please ensure that node, npm and grunt-cli have been installed. Then:
 
-From project root type
+From a terminal working out of project root, type
+
+```
     npm install
+```    
     
 After this completes, enter
+
+```
     grunt
+```
     
 This task will run unit tests against the code, concat and minify the source, and finally start a local server listening on port 8082.
 
