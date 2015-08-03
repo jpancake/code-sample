@@ -81,8 +81,8 @@ module.exports = function (grunt) {
     uglify: {
         admin: {
             files: {
-              'dist/scripts/scripts.js': [
-                'dist/scripts/scripts.js'
+              'dist/scripts/app.js': [
+                'dist/scripts/app.js'
               ]
             }
         }
