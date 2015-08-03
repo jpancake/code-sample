@@ -5,22 +5,18 @@ var sm = typeof( sm ) === 'undefined' ? {} : sm;
 sm.apiPathPrefix = '/admin/api/';
 
 sm.apiRoutes = {
-	accessPass: sm.apiPathPrefix + 'access_passes',
 	broadcast: sm.apiPathPrefix + 'notifications/broadcast',
 	collections: sm.apiPathPrefix + 'collections',
 	filters: sm.apiPathPrefix + 'filters',
 	getAllSongs: sm.apiPathPrefix + 'songs',
 	login: sm.apiPathPrefix + 'login',
 	promotions: sm.apiPathPrefix + 'promotions',
-	subscriptions: sm.apiPathPrefix + 'subscription_info',
-    contests: sm.apiPathPrefix + 'contests',
-    contestImages: sm.apiPathPrefix + 'contest_images',
     webConfig: sm.apiPathPrefix + 'web_config'
 };
 
 
 angular.module('angularAdminApp', [
-  'ngAnimate', 'ngResource', 'ngRoute', 'smServices'
+  'ngAnimate', 'ngResource', 'ngRoute', 'ui.bootstrap', 'smServices'
 ])
 	.config([ '$routeProvider', function ( $routeProvider ) {
 		$routeProvider

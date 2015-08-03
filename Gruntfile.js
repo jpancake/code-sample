@@ -1,19 +1,22 @@
 'use strict';
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
-
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
     clean: {
-        admin: ['.tmp'],
+        admin: ['.tmp', 'dist/'],
         tmp: '.tmp'
     },
+  	express: {
+		web:{
+			options: {
+				background: false,
+				port: 8082,
+				script: 'server.js'
+			}
+		}
+	},
 	copy: {
 	  'admin': {
 		  expand: true,
@@ -86,9 +89,9 @@ module.exports = function (grunt) {
     }
   });
 
-    grunt.registerTask('test:admin', ['karma']);
-
-    grunt.registerTask('build:admin', [
+    grunt.registerTask('test', ['karma']);
+    grunt.registerTask('server', ['express']);
+    grunt.registerTask('build', [
         'clean:admin',
         'useminPrepare:admin',
         'htmlmin:admin',
@@ -99,5 +102,5 @@ module.exports = function (grunt) {
         'usemin:admin',
 		'copy:admin'
     ]);
-
+	grunt.registerTask('default', ['test', 'build', 'server']);
 };
